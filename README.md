@@ -8,6 +8,8 @@ Forked from [this repo](https://github.com/ZhangMYihua/crwn-clothing-firebase-ca
     - `favicon.ico`
     - `manifest.json`
     - images
+- Update Stripe publishable key in `/client/src/components/stripe-button/stripe-button.component.jsx`
+- Update Firebase config in `/client/src/firebase/firebase.utils.js`
 - Update data on Firestore backend
 
 ## Local Environment
