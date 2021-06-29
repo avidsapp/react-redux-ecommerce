@@ -24,6 +24,7 @@ Forked from [this repo](https://github.com/ZhangMYihua/crwn-clothing-firebase-ca
 ## For Netlify hosting
 - Add `CI= ` before the run command - [link](https://answers.netlify.com/t/how-to-fix-build-failures-with-create-react-app-in-production/17752)
 - Add Stripe secret env variable `STRIPE_SECRET_KEY=...`
+- Add `/.nvmrc` with `10.16.0` to specify the Node version to use
 
 ## TO DO:
 - Fix service worker for PWA
