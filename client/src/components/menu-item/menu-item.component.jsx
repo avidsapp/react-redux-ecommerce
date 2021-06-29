@@ -6,7 +6,6 @@ import {
   BackgroundImageContainer,
   ContentContainer,
   ContentTitle,
-  ContentSubtitle
 } from './menu-item.styles';
 
 export const MenuItem = ({
