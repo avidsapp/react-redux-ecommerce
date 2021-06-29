@@ -8,14 +8,37 @@ export const GlobalStyle = createGlobalStyle`
 		@media screen and (max-width: 800px) {
 			padding: 10px;
 		}
+
+		background-color: var(--background-color);
 	}
 
 	a {
 		text-decoration: none;
-		color: black;
+		color: var(--primary-color);
+
+		&:hover {
+	    color: var(--secondary-color);
+	    text-decoration: underline;
+
+	    @media screen and (max-width: 800px) {
+	      color: unset;
+	      text-decoration: unset;
+	    }
+	  }
 	}
 
 	* {
 		box-sizing: border-box;
+	}
+
+	// GLOBAL VARIABLES
+	:root {
+	  --font-family: sans-serif;
+	  --background-color: white;
+	  --primary-color: #9B186A;
+	  --secondary-color: black;
+	  --white: white;
+	  --black: black;
+	  --border-radius: 0px;
 	}
 `;

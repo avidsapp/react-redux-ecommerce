@@ -57,8 +57,8 @@ export const ContentContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid black;
-  background-color: white;
+  border: 1px solid var(--white);
+  background-color: var(--primary-color);
   opacity: 0.7;
   position: absolute;
 `;
@@ -67,7 +67,7 @@ export const ContentTitle = styled.span`
   font-weight: bold;
   margin-bottom: 6px;
   font-size: 22px;
-  color: #4a4a4a;
+  color: var(--white);
 `;
 
 export const ContentSubtitle = styled.span`
