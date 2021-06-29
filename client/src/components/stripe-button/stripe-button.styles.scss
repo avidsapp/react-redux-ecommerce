@@ -1,7 +1,9 @@
 .StripeCheckout {
   background: var(--primary-color) !important;
   border-radius: 0px !important;
+  border: none;
   margin: 0px auto;
+  padding: 0px;
   width: 25vw;
   height: 6vh;
 
@@ -24,13 +26,12 @@
     font-weight: bold;
     box-shadow: unset;
     text-shadow: unset;
-    border: 0px;
+    border: none;
 
     &:hover {
       background-color: var(--black);
       color: var(--black);
       border-radius: 0px !important;
-      border: 0px !important;
     }
 
     @media screen and (max-width: 800px) {

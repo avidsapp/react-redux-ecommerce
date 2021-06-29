@@ -3,6 +3,7 @@
 Forked from [this repo](https://github.com/ZhangMYihua/crwn-clothing-firebase-cart).
 
 ## Customize
+- Theming at `/client/global.styles.js`
 - Update `/client/public/` dir:
     - `index.html`
     - `favicon.ico`
