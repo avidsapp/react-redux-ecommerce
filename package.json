@@ -7,8 +7,9 @@
   },
   "scripts": {
     "client": "cd client && yarn start",
+    "client-build": "cd client && yarn && yarn start",
     "server": "nodemon server.js",
-    "build": "concurrently \"yarn start\" \"yarn client\"",
+    "build": "concurrently \"yarn start\" \"yarn client-build\"",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\"",
     "start": "node server.js",
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
