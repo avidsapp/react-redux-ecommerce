@@ -12,6 +12,12 @@ export const GlobalStyle = createGlobalStyle`
 		background-color: var(--background-color);
 	}
 
+	body,
+	input,
+	textarea {
+		font-family: 'Open Sans Condensed';
+	}
+
 	a {
 		text-decoration: none;
 		color: var(--primary-color);
