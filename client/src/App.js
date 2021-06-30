@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, Suspense } from 'react';
+import React, { useEffect, Suspense } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -16,6 +16,7 @@ import lazyWithRetry from './components/lazy-with-retry/lazy-with-retry.componen
 
 const HomePage = lazyWithRetry(() => import('./pages/homepage/homepage.component'));
 const ShopPage = lazyWithRetry(() => import('./pages/shop/shop.component'));
+const ContactPage = lazyWithRetry(() => import('./pages/contact/contact.component'));
 const SignInAndSignUpPage = lazyWithRetry(() =>
   import('./pages/sign-in-and-sign-up/sign-in-and-sign-up.component')
 );
@@ -35,6 +36,7 @@ const App = ({ checkUserSession, currentUser }) => {
           <Suspense fallback={<Spinner />}>
             <Route exact path='/' component={HomePage} />
             <Route path='/shop' component={ShopPage} />
+            <Route exact path='/contact' component={ContactPage} />
             <Route exact path='/checkout' component={CheckoutPage} />
             <Route
               exact

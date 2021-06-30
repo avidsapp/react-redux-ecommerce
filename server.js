@@ -3,11 +3,16 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 const enforce = require('express-sslify');
+const nodemailer = require("nodemailer");
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const loginUser = process.env.LOGIN_USER;
+const loginPw = process.env.LOGIN_PW;
+const sendToEmail = process.env.SEND_TO_EMAIL;
 
+// Setup server
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -16,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors());
 
+// Force HTTPS and proper routes
 if (process.env.NODE_ENV === 'production') {
   // app.use(compression);
   app.use(enforce.HTTPS({ trustProtoHeader: true }));
@@ -26,15 +32,18 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
+// Listen on port 5000
 app.listen(port, error => {
   if (error) throw error;
   console.log('Server running on port ' + port);
 });
 
+// Direct service-worker requests
 app.get('/service-worker.js', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'client/build', 'service-worker.js'));
 });
 
+// Send payment route
 app.post('/payment', (req, res) => {
   const body = {
     source: req.body.token.id,
@@ -47,6 +56,45 @@ app.post('/payment', (req, res) => {
       res.status(500).send({ error: stripeErr });
     } else {
       res.status(200).send({ success: stripeRes });
+    }
+  });
+});
+
+// Establish connection with SMTP
+const contactEmail = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: loginUser,
+    pass: loginPw,
+  },
+});
+
+contactEmail.verify((error) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("Ready to Send");
+  }
+});
+
+// Send email route
+app.post('/contact', (req, res) => {
+  const name = req.body.name;
+  const email = req.body.email;
+  const message = req.body.message;
+  const mail = {
+    from: name,
+    to: sendToEmail,
+    subject: "Contact Form Submission",
+    html: `<p>Name: ${name}</p>
+           <p>Email: ${email}</p>
+           <p>Message: ${message}</p>`,
+  };
+  contactEmail.sendMail(mail, (error) => {
+    if (error) {
+      res.json({ status: "ERROR" });
+    } else {
+      res.json({ status: "Message Sent" });
     }
   });
 });

@@ -11,20 +11,19 @@ Forked from [this repo](https://github.com/ZhangMYihua/crwn-clothing-firebase-ca
     - images
 - Update Stripe publishable key in `/client/src/components/stripe-button/stripe-button.component.jsx`
 - Update Firebase config in `/client/src/firebase/firebase.utils.js`
-- Update data on Firestore backend
+- Update data on Firestore backend - [Programmatically done here](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/15189164#content)
 
-## Local Environment
-
-[Add .env with Stripe secret](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/15305912#content)
-
-## Add data to Firestore
-
-[Programmatically done here](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/learn/lecture/15189164#content)
-
-## For Netlify hosting
-- Add `CI= ` before the run command - [link](https://answers.netlify.com/t/how-to-fix-build-failures-with-create-react-app-in-production/17752)
-- Add Stripe secret env variable `STRIPE_SECRET_KEY=...`
-- Add `/.nvmrc` with `10.16.0` to specify the Node version to use
+## Environment Variables
+- STRIPE_SECRET_KEY=****
+- LOGIN_USER=****@gmail.com
+- LOGIN_PW=****
+- SEND_TO_EMAIL=****@whatever.com
 
 ## TO DO:
-- Fix service worker for PWA
+- Convert contact page to FormInput components
+- Individual product pages
+- Product variations
+- Printful API integration & shipping
+- Check ErrorBoundary & lazyWithRetry
+- Add testing to new components
+- Convert back-end into Lamdas
