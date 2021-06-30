@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const cors = require('cors');
+// const request = require('request');
 const bodyParser = require('body-parser');
 const path = require('path');
 const enforce = require('express-sslify');
@@ -21,8 +22,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors());
+app.options('*', cors());
 app.use(express.json());
 app.use("/", router);
+
+app.use(function(req, res, next) {
+    res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type, Accept,Authorization,Origin");
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
+    res.setHeader("Access-Control-Allow-Credentials", true);
+    next();
+  }
+);
 
 // Force HTTPS and proper routes
 if (process.env.NODE_ENV === 'production') {
@@ -34,6 +45,11 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
   });
 }
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 
 // Listen on port 5000
 app.listen(port, error => {
@@ -81,7 +97,7 @@ contactEmail.verify((error) => {
 });
 
 // Send email route
-router.post('/contact', cors(), (req, res) => {
+router.post('/contact', (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
   const message = req.body.message;
