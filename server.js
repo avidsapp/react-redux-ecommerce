@@ -27,14 +27,14 @@ app.use(express.json());
 app.use("/", router);
 
 // Force HTTPS and proper routes
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(enforce.HTTPS({ trustProtoHeader: true }));
-//   app.use(express.static(path.join(__dirname, 'client/build')));
-//
-//   app.get('*', function(req, res) {
-//     res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
-//   });
-// }
+if (process.env.NODE_ENV === 'production') {
+  app.use(enforce.HTTPS({ trustProtoHeader: true }));
+  app.use(express.static(path.join(__dirname, 'client/build')));
+
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+}
 
 // Listen on port 5000
 app.listen(port, error => {
@@ -67,6 +67,7 @@ app.post('/payment', (req, res) => {
 // Establish connection with SMTP
 const contactEmail = nodemailer.createTransport({
   service: 'gmail',
+  port: 587,
   auth: {
     user: loginUser,
     pass: loginPw,
@@ -82,23 +83,24 @@ contactEmail.verify((error) => {
 });
 
 // Send email route
-router.post('/contact', (req, res) => {
+router.post('/send-contact', (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
+  const subject = req.body.subject;
   const message = req.body.message;
   const mail = {
     from: name,
     to: sendToEmail,
-    subject: "Contact Form Submission",
+    subject: `Contact Form Submission - ${subject}`,
     html: `<p>Name: ${name}</p>
            <p>Email: ${email}</p>
            <p>Message: ${message}</p>`,
   };
   contactEmail.sendMail(mail, (error) => {
     if (error) {
-      res.json({ status: "ERROR" });
+      res.json({ status: "fail" });
     } else {
-      res.json({ status: "Message Sent" });
+      res.json({ status: "success" });
     }
   });
 });
