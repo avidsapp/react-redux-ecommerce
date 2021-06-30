@@ -29,8 +29,8 @@ const ContactForm = () => {
   };
   return (
     <ContactFormContainer>
-      <form onSubmit={handleSubmit}>
-
+      <form className='sign-up-form' onSubmit={handleSubmit}>
+        <h2>Provide feedback</h2>
         <div>
           <label htmlFor="name">Name:</label>
           <input type="text" id="name" placeholder="Name" required />

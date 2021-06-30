@@ -1,4 +1,5 @@
 const express = require('express');
+const router = express.Router();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -20,6 +21,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors());
+app.use(express.json());
+app.use("/", router);
 
 // Force HTTPS and proper routes
 if (process.env.NODE_ENV === 'production') {
@@ -78,7 +81,7 @@ contactEmail.verify((error) => {
 });
 
 // Send email route
-app.post('/contact', cors(), (req, res) => {
+router.post('/contact', cors(), (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
   const message = req.body.message;
