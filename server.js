@@ -78,7 +78,7 @@ contactEmail.verify((error) => {
 });
 
 // Send email route
-app.post('/contact', (req, res) => {
+app.post('/contact', cors(), (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
   const message = req.body.message;
