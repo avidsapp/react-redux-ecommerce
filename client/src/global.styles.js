@@ -43,6 +43,7 @@ export const GlobalStyle = createGlobalStyle`
 	  --background-color: white;
 	  --primary-color: #9B186A;
 	  --secondary-color: black;
+		--tertiary-color: #00d0ff;
 	  --white: white;
 	  --black: black;
 	  --border-radius: 0px;

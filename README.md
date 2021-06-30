@@ -20,7 +20,6 @@ Forked from [this repo](https://github.com/ZhangMYihua/crwn-clothing-firebase-ca
 - SEND_TO_EMAIL=****@whatever.com
 
 ## TO DO:
-- Convert contact page to FormInput components
 - Individual product pages
 - Product variations
 - Printful API integration & shipping
