@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from 'react';
 import axios from 'axios';
 
 import FormInput from '../form-input/form-input.component';
@@ -42,9 +42,9 @@ class ContactForm extends React.Component {
     }).then((response)=>{
       if (response.data.status === 'success'){
         alert("Message Sent.");
-        this.resetForm()
+        this.resetForm();
       }else if(response.data.status === 'fail'){
-        alert("Message failed to send.")
+        alert("Message failed to send.");
       }
     })
   }
@@ -63,36 +63,27 @@ class ContactForm extends React.Component {
           method="POST"
         >
           <div className="form-group">
-            <div className="row">
-              <div className="col-md-6">
-                <FormInput id="name"
-                  type="text"
-                  placeholder="Name"
-                  label="Name"
-                  className="form-control"
-                  required
-                  value={this.state.name}
-                  onChange={this.onNameChange.bind(this)}
-                />
-              </div>
-              <div className="col-md-6">
-                <FormInput id="email"
-                  type="email"
-                  placeholder = "Email"
-                  label="Email"
-                  className="form-control"
-                  aria-describedby="emailHelp"
-                  required
-                  value={this.state.email}
-                  onChange={this.onEmailChange.bind(this)}
-                />
-              </div>
-            </div>
+            <FormInput id="name"
+              type="text"
+              label="Name"
+              className="form-control"
+              required
+              value={this.state.name}
+              onChange={this.onNameChange.bind(this)}
+            />
+            <FormInput id="email"
+              type="email"
+              label="Email"
+              className="form-control"
+              aria-describedby="emailHelp"
+              required
+              value={this.state.email}
+              onChange={this.onEmailChange.bind(this)}
+            />
           </div>
           <div className="form-group">
             <FormInput id="subject"
               type="text"
-              placeholder="Subject"
               label="Subject"
               className="form-control"
               required
@@ -102,8 +93,7 @@ class ContactForm extends React.Component {
           </div>
           <div className="form-group">
             <FormInput id="message"
-              placeholder="Message"
-              Label="Message"
+              label="Message"
               className="form-control"
               rows="1"
               required

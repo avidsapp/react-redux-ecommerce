@@ -8,10 +8,6 @@ export const ContactFormContainer = styled.div`
   align-items: center;
   margin: 50px auto 0;
 
-  label {
-    display: none;
-  }
-
   input {
     width: 100%;
     margin-bottom: 10px;
@@ -24,5 +20,14 @@ export const ContactFormContainer = styled.div`
 
   @media screen and (max-width: 800px) {
     width: 90%;
+  }
+
+  #contact-form {
+    width: 100%;
+  }
+
+  h2.title {
+    width: 100%;
+    text-align: left;
   }
 `;
