@@ -15,14 +15,6 @@ Forked from [this repo](https://github.com/ZhangMYihua/crwn-clothing-firebase-ca
 
 ## Environment Variables
 - STRIPE_SECRET_KEY=****
-- LOGIN_USER=****@gmail.com
+- LOGIN_USER=youraddress@whatever.com
 - LOGIN_PW=****
-- SEND_TO_EMAIL=****@whatever.com
-
-## TO DO:
-- Individual product pages
-- Product variations
-- Printful API integration & shipping
-- Check ErrorBoundary & lazyWithRetry
-- Add testing to new components
-- Convert back-end into Lamdas
+- SEND_TO_EMAIL=youraddress@whatever.com

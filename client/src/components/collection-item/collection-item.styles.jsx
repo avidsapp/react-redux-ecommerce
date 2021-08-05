@@ -49,7 +49,7 @@ export const AddButton = styled(CustomButton)`
   width: 80%;
   opacity: 0.7;
   position: absolute;
-  bottom: 26px;
+  bottom: 40px;
   display: none;
 
   @media screen and (max-width: 800px) {
